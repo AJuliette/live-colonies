@@ -1,0 +1,22 @@
+example_id                            | status | run_time        |
+------------------------------------- | ------ | --------------- |
+./spec/models/stay_spec.rb[1:1:1:1]   | passed | 0.00095 seconds |
+./spec/models/stay_spec.rb[1:1:1:2]   | passed | 0.00146 seconds |
+./spec/models/stay_spec.rb[1:1:1:3]   | passed | 0.00088 seconds |
+./spec/models/stay_spec.rb[1:1:1:4]   | passed | 0.00093 seconds |
+./spec/models/stay_spec.rb[1:1:1:5]   | passed | 0.0008 seconds  |
+./spec/models/stay_spec.rb[1:1:1:6]   | passed | 0.00079 seconds |
+./spec/models/stay_spec.rb[1:1:1:7]   | passed | 0.00731 seconds |
+./spec/models/stay_spec.rb[1:2:1]     | passed | 0.00721 seconds |
+./spec/models/stay_spec.rb[1:2:2]     | passed | 0.0856 seconds  |
+./spec/models/studio_spec.rb[1:1:1:1] | passed | 0.01721 seconds |
+./spec/models/studio_spec.rb[1:1:1:2] | passed | 0.00383 seconds |
+./spec/models/studio_spec.rb[1:1:1:3] | passed | 0.00103 seconds |
+./spec/models/studio_spec.rb[1:1:1:4] | passed | 0.00143 seconds |
+./spec/models/studio_spec.rb[1:1:1:5] | passed | 0.00128 seconds |
+./spec/models/studio_spec.rb[1:2:1]   | passed | 0.00332 seconds |
+./spec/models/tenant_spec.rb[1:1:1:1] | passed | 0.00153 seconds |
+./spec/models/tenant_spec.rb[1:1:1:2] | passed | 0.00111 seconds |
+./spec/models/tenant_spec.rb[1:1:1:3] | passed | 0.00086 seconds |
+./spec/models/tenant_spec.rb[1:1:1:4] | passed | 0.00088 seconds |
+./spec/models/tenant_spec.rb[1:2:1]   | passed | 0.00974 seconds |
