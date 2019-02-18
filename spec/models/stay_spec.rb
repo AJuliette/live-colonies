@@ -16,31 +16,38 @@
 require 'rails_helper'
 
 RSpec.describe Stay, type: :model do
-  describe 'Model instantiation' do
-    subject(:new_stay) { described_class.new }
+  describe "No overlapping for a stay in a same studio" do
+    let(:studio) { create(:studio) }
+    let(:stay) { create(:stay, studio: studio, start_date: "2019-02-04 00:00:00", end_date: "2019-12-04 00:00:00") }
 
-    describe 'Database of Item' do
-      it { is_expected.to have_db_column(:id).of_type(:integer) }
-      it { is_expected.to have_db_column(:studio_id).of_type(:integer) }
-      it { is_expected.to have_db_column(:tenant_id).of_type(:integer) }
-      it { is_expected.to have_db_column(:start_date).of_type(:datetime) }
-      it { is_expected.to have_db_column(:end_date).of_type(:datetime) }
-      it { is_expected.to have_db_column(:created_at).of_type(:datetime).with_options(null: false) }
-      it { is_expected.to have_db_column(:updated_at).of_type(:datetime).with_options(null: false) }
-    end
-  end
-
-  describe "Relations" do
-    it 'belongs to a tenant' do
-      tenant = create(:tenant)
-      stay = create(:stay, tenant: tenant)
-      expect(stay.tenant).to eq(tenant)
+    it "can't start during an existing stay" do
+      stay1 = Stay.new(studio: studio, start_date: "2019-04-04 00:00:00", end_date: "2019-12-14 00:00:00" )
+      expect(stay1).not_to be_valid
     end
 
-    it 'belongs to a studio' do
-      studio = create(:studio)
-      stay = build(:stay, studio: studio)
-      expect(stay.studio).to eq(studio)
+    it "can't end during an existing stay" do
+      stay1 = Stay.new(studio: studio, start_date: "2019-01-04 00:00:00", end_date: "2019-12-02 00:00:00" )
+      expect(stay1).not_to be_valid
+    end
+
+    it "can't surrounder an existing stay" do
+      stay1 = Stay.new(studio: studio, start_date: "2019-02-02 00:00:00", end_date: "2019-12-05 00:00:00" )
+      expect(stay1).not_to be_valid
+    end
+
+    it "can't happen in an existing stay" do
+      stay1 = Stay.new(studio: studio, start_date: "2019-02-06 00:00:00", end_date: "2019-11-05 00:00:00" )
+      expect(stay1).not_to be_valid
+    end
+
+    it "can't start on the end day of an existing stay" do
+      stay1 = Stay.new(studio: studio, start_date: "2019-12-04 00:00:00", end_date: "2019-12-25 00:00:00" )
+      expect(stay1).not_to be_valid
+    end
+
+    it "can't end on the start day of an existing stay" do
+      stay1 = Stay.new(studio: studio, start_date: "2019-01-04 00:00:00", end_date: "2019-02-04 00:00:00" )
+      expect(stay1).not_to be_valid
     end
   end
 end

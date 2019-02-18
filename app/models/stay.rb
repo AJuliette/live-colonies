@@ -16,4 +16,16 @@
 class Stay < ApplicationRecord
   belongs_to :studio
   belongs_to :tenant
+
+  validate :no_reservation_overlap
+
+  def no_reservation_overlap
+    return if self
+              .class
+              .where(studio_id: studio_id)
+              .where('start_date <= ? AND end_date >= ?', end_date, start_date)
+              .none?
+
+    errors.add(:stay, 'Overlapping reservation exists')
+  end
 end
