@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_16_090646) do
+ActiveRecord::Schema.define(version: 2019_02_18_225858) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "payments", force: :cascade do |t|
+    t.bigint "stay_id"
+    t.string "yearmonth"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["stay_id"], name: "index_payments_on_stay_id"
+  end
 
   create_table "stays", force: :cascade do |t|
     t.bigint "studio_id"
@@ -39,6 +47,7 @@ ActiveRecord::Schema.define(version: 2019_02_16_090646) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "payments", "stays"
   add_foreign_key "stays", "studios"
   add_foreign_key "stays", "tenants"
 end

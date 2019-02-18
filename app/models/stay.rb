@@ -16,6 +16,8 @@
 class Stay < ApplicationRecord
   belongs_to :studio
   belongs_to :tenant
+  has_many :payments
+  after_create :payments_creation
 
   validate :no_reservation_overlap
 
@@ -27,5 +29,13 @@ class Stay < ApplicationRecord
               .none?
 
     errors.add(:stay, 'Overlapping reservation exists')
+  end
+
+  def payments_creation
+    staying = start_date.to_datetime..end_date.to_datetime
+    months = staying.map{ |m| m.strftime('%Y%m') }.uniq
+    months.each do |m|
+      Payment.create(yearmonth: m, stay_id: self.id)
+    end
   end
 end

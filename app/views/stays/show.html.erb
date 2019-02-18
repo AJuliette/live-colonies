@@ -1,0 +1,36 @@
+<h1>Show stay n°<%= @stay.id %></h1>
+
+<p>Start date: <%= @stay.start_date.strftime("%F") %></p>
+<p>End date: <%= @stay.end_date.strftime("%F") %></p>
+<p>Studio: <%= @stay.studio.name %>
+<p>Tenant: <%= @stay.tenant.email %>
+<p>Complete monthly price: <%= number_to_currency(@stay.studio.monthly_price) %></p>
+
+
+<div class="container-fluid mt-5">
+
+  <div class="container">
+     <div class="row">
+
+        <div class="col-lg-6">
+          <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Months spent in the studio</th>
+              <th scope="col">Monthly price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @stay.payments.each do |item| %>
+              <tr> 
+                <td><%= item.monthly_price.keys.join %></td>
+                <td><%= number_to_currency(item.monthly_price.values.join.to_i) %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+  </div>
+</div>  
+      

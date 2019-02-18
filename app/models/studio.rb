@@ -13,4 +13,5 @@
 
 class Studio < ApplicationRecord
   has_many :stays, dependent: :destroy
+  has_many :payments, through: :stays
 end
