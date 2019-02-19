@@ -7,4 +7,5 @@
   Stay.create(start_date: "2019-10-13 00:00:00", end_date: "2019-12-25 00:00:00", studio: studio_i, tenant: tenant_i)
   Stay.create(start_date: "2019-01-13 00:00:00", end_date: "2019-01-25 00:00:00", studio: studio_i, tenant: tenant_i)
   Stay.create(start_date: "2020-01-13 00:00:00", end_date: "2022-01-25 00:00:00", studio: studio_i, tenant: tenant_i)
+  Discount.create(start_date: "2019-05-12 00:00:00", end_date: "2019-06-12 00:00:00", active: true, discount_percentage: 20, tenant: tenant_i)
 end

@@ -23,8 +23,8 @@
           <tbody>
             <% @stay.payments.each do |item| %>
               <tr> 
-                <td><%= item.monthly_price.keys.join %></td>
-                <td><%= number_to_currency(item.monthly_price.values.join.to_i) %></td>
+                <td><%= item.price_of_month.keys.join %></td>
+                <td><%= number_to_currency(item.price_of_month.values.join.to_i) %></td>
               </tr>
               <% end %>
             </tbody>

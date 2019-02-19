@@ -16,7 +16,7 @@
 class Stay < ApplicationRecord
   belongs_to :studio
   belongs_to :tenant
-  has_many :payments
+  has_many :payments, dependent: :destroy
   after_create :payments_creation
 
   validate :no_reservation_overlap
@@ -35,7 +35,7 @@ class Stay < ApplicationRecord
     staying = start_date.to_datetime..end_date.to_datetime
     months = staying.map{ |m| m.strftime('%Y%m') }.uniq
     months.each do |m|
-      Payment.create(yearmonth: m, stay_id: self.id)
+      Payment.create(yearmonth: m, stay_id: id)
     end
   end
 end

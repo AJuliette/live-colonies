@@ -12,4 +12,9 @@
 
 class Tenant < ApplicationRecord
   has_many :stays, dependent: :destroy
+  has_many :discounts, dependent: :destroy
+
+  def current_discount
+    discounts.active.first
+  end
 end
